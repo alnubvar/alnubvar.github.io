@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Albert • ML Engineer & Telegram Bot Developer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Portfolio of Albert — Junior ML Engineer (NLP) and Telegram bot developer." />
+    <style>
+        :root {
+            --bg: #050816;
+            --bg-alt: #0b1120;
+            --accent: #22c55e;
+            --accent-soft: rgba(34, 197, 94, 0.1);
+            --text-main: #e5e7eb;
+            --text-muted: #9ca3af;
+            --card-bg: #020617;
+            --border-subtle: #1f2937;
+            --radius-xl: 18px;
+            --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.55);
+            --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+                "Segoe UI", sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: radial-gradient(circle at top, #1e293b 0, #020617 45%);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .page {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 32px 18px 72px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            gap: 16px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-circle {
+            width: 34px;
+            height: 34px;
+            border-radius: 999px;
+            background: conic-gradient(from 180deg,
+                    #22c55e,
+                    #22c55e,
+                    #22c55e,
+                    #38bdf8,
+                    #a855f7,
+                    #22c55e);
+            padding: 2px;
+        }
+
+        .logo-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            background: #020617;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            color: #e5e7eb;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .logo-text span:first-child {
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .logo-text span:last-child {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 14px;
+            font-size: 13px;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav-links a {
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            transition: 0.18s ease;
+        }
+
+        .nav-links a:hover {
+            border-color: rgba(148, 163, 184, 0.4);
+            color: #e5e7eb;
+            background: rgba(15, 23, 42, 0.7);
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+            gap: 28px;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .hero-main {
+            padding: 22px 20px;
+            border-radius: 24px;
+            background: radial-gradient(circle at top left, #0f172a, #020617);
+            border: 1px solid #111827;
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--text-muted);
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: 999px;
+            padding: 4px 9px;
+            border: 1px solid rgba(75, 85, 99, 0.7);
+            margin-bottom: 14px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-pill-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: #22c55e;
+            box-shadow: 0 0 12px rgba(34, 197, 94, 0.8);
+        }
+
+        .hero-title {
+            font-size: clamp(26px, 3.1vw, 32px);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .hero-title span {
+            background: linear-gradient(to right, #22c55e, #a855f7);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            max-width: 520px;
+            margin-bottom: 18px;
+        }
+
+        .hero-subtitle strong {
+            color: #e5e7eb;
+            font-weight: 500;
+        }
+
+        .hero-cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .btn-primary,
+        .btn-ghost {
+            border-radius: 999px;
+            padding: 9px 16px;
+            font-size: 13px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.18s ease;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #22c55e, #16a34a);
+            color: #020617;
+            font-weight: 600;
+            box-shadow: 0 12px 28px rgba(22, 163, 74, 0.4);
+        }
+
+        .btn-primary:hover {
+            filter: brightness(1.06);
+            transform: translateY(-1px);
+        }
+
+        .btn-ghost {
+            background: rgba(15, 23, 42, 0.95);
+            border-color: rgba(55, 65, 81, 0.9);
+            color: var(--text-main);
+        }
+
+        .btn-ghost:hover {
+            border-color: #22c55e;
+            color: #bbf7d0;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .hero-meta span {
+            padding: 4px 9px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(31, 41, 55, 0.9);
+        }
+
+        .hero-aside {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .card {
+            background: radial-gradient(circle at top, #020617, #020617);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-subtle);
+            padding: 18px 16px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .card h3 {
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .card p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .pill {
+            font-size: 11px;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(55, 65, 81, 0.9);
+            color: var(--text-muted);
+        }
+
+        .pill.badge-green {
+            background: var(--accent-soft);
+            border-color: rgba(34, 197, 94, 0.6);
+            color: #bbf7d0;
+        }
+
+        .pill.badge-purple {
+            background: rgba(168, 85, 247, 0.12);
+            border-color: rgba(168, 85, 247, 0.6);
+            color: #e9d5ff;
+        }
+
+        section {
+            margin-bottom: 32px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+        }
+
+        .skills-list {
+            font-size: 13px;
+            color: var(--text-muted);
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .skills-list li {
+            margin-bottom: 4px;
+        }
+
+        .skills-list span {
+            color: #e5e7eb;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 14px;
+        }
+
+        .project-card {
+            background: radial-gradient(circle at top left, #020617, #020617);
+            border-radius: var(--radius-xl);
+            padding: 16px 14px;
+            border: 1px solid var(--border-subtle);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            cursor: pointer;
+            transition: 0.18s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            border-color: rgba(34, 197, 94, 0.7);
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.7);
+        }
+
+        .project-name {
+            font-size: 14px;
+            font-weight: 500;
+            margin-right: 36px;
+        }
+
+        .project-role {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .project-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 4px;
+            gap: 8px;
+            font-size: 11px;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .tag {
+            font-size: 11px;
+            padding: 3px 7px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(55, 65, 81, 0.9);
+        }
+
+        .project-link {
+            font-size: 11px;
+            color: #a5b4fc;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+        }
+
+        .project-link::after {
+            content: "↗";
+            font-size: 11px;
+        }
+
+        .contact-card {
+            display: grid;
+            grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.2fr);
+            gap: 16px;
+        }
+
+        .contact-text {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .contact-list {
+            list-style: none;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .contact-list li {
+            margin-bottom: 6px;
+        }
+
+        .contact-list strong {
+            color: #e5e7eb;
+        }
+
+        footer {
+            margin-top: 24px;
+            font-size: 11px;
+            color: var(--text-muted);
+            text-align: center;
+            padding-top: 12px;
+            border-top: 1px solid rgba(31, 41, 55, 0.9);
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                justify-content: flex-start;
+            }
+
+            .hero {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .hero-main {
+                order: 1;
+            }
+
+            .hero-aside {
+                order: 2;
+            }
+
+            .contact-card {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <header>
+            <div class="logo">
+                <div class="logo-circle">
+                    <div class="logo-inner">A</div>
+                </div>
+                <div class="logo-text">
+                    <span>Albert</span>
+                    <span>ML Engineer • Telegram bots</span>
+                </div>
+            </div>
+            <nav class="nav-links">
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#bots">Telegram Bots</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Hero -->
+            <section class="hero">
+                <div class="hero-main">
+                    <div class="hero-pill">
+                        <span class="hero-pill-dot"></span>
+                        <span>Open to Junior ML Engineer / ML Engineer (NLP) roles</span>
+                    </div>
+                    <h1 class="hero-title">
+                        I build <span>ML systems & Telegram bots</span> that solve business problems.
+                    </h1>
+                    <p class="hero-subtitle">
+                        I'm Albert, a Junior <strong>ML Engineer (NLP)</strong> and
+                        <strong>Telegram bot developer</strong>.
+                        I focus on <strong>text classification, recommender systems, churn prediction</strong>
+                        and production-ready bots used in real chats.
+                    </p>
+                    <div class="hero-cta">
+                        <!-- TODO: replace links with your real ones -->
+                        <a class="btn-primary" href="https://github.com/alnubvar" target="_blank" rel="noreferrer">
+                            View GitHub
+                        </a>
+                        <a class="btn-ghost" href="#projects">
+                            See featured projects
+                        </a>
+                    </div>
+                    <div class="hero-meta">
+                        <span>4+ ML projects (NLP, time series, churn, recommender)</span>
+                        <span>Production Telegram bots with ML moderation</span>
+                    </div>
+                </div>
+
+                <aside class="hero-aside">
+                    <div class="card">
+                        <h3>Currently</h3>
+                        <p>
+                            Building ML portfolio and production-ready Telegram tools.
+                            Looking for a team where ML meets real business metrics.
+                        </p>
+                        <div class="pill-row">
+                            <span class="pill badge-green">Junior ML Engineer (NLP)</span>
+                            <span class="pill badge-purple">Telegram bots developer</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Focus areas</h3>
+                        <p>Machine Learning, NLP, recommender systems, churn prediction and automation via bots.</p>
+                        <div class="pill-row">
+                            <span class="pill">NLP • text classification</span>
+                            <span class="pill">Recommenders</span>
+                            <span class="pill">Churn / retention</span>
+                            <span class="pill">Telegram automation</span>
+                        </div>
+                    </div>
+                </aside>
+            </section>
+
+            <!-- Skills -->
+            <section id="skills">
+                <div class="section-header">
+                    <h2 class="section-title">Skills & Tech Stack</h2>
+                    <span class="section-subtitle">What I use to ship projects</span>
+                </div>
+                <div class="skills-grid">
+                    <div class="card">
+                        <h3>Machine Learning</h3>
+                        <ul class="skills-list">
+                            <li><span>ML:</span> classification, regression, time series, churn</li>
+                            <li><span>NLP:</span> TF-IDF, text classification, intent detection</li>
+                            <li><span>Recsys:</span> collaborative filtering, ranking metrics</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Tools & Libraries</h3>
+                        <ul class="skills-list">
+                            <li><span>Python:</span> pandas, numpy, matplotlib</li>
+                            <li><span>ML:</span> scikit-learn, CatBoost, LightGBM</li>
+                            <li><span>Next step:</span> PyTorch, Transformers</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Production & Bots</h3>
+                        <ul class="skills-list">
+                            <li><span>Telegram:</span> bot development & moderation logic</li>
+                            <li><span>Infra:</span> Docker, Linux, :contentReference[oaicite:1]{index=1} (in progress)
+                            </li>
+                            <li><span>Practices:</span> logging, configs, scheduled jobs</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects -->
+            <section id="projects">
+                <div class="section-header">
+                    <h2 class="section-title">Featured ML Projects</h2>
+                    <span class="section-subtitle">Selection of end-to-end projects with metrics & business value</span>
+                </div>
+
+                <div class="projects-grid">
+                    <!-- NLP Ad Detection -->
+                    <a class="project-card" href="https://github.com/alnubvar/telegram_ad_detection_ML" target="_blank"
+                        rel="noreferrer">
+                        <div class="project-header">
+                            <div class="project-name">Telegram Ad Detection (NLP)</div>
+                            <div class="project-role">ML • NLP • Production</div>
+                        </div>
+                        <p class="project-desc">
+                            Detects commercial messages in multilingual Telegram chats using
+                            TF-IDF + Logistic Regression with tuned threshold and PR-AUC focus.
+                            Integrated into a real moderation bot.
+                        </p>
+                        <div class="project-meta">
+                            <div class="tag-row">
+                                <span class="tag">Python</span>
+                                <span class="tag">NLP</span>
+                                <span class="tag">TF-IDF</span>
+                                <span class="tag">LogReg</span>
+                            </div>
+                            <span class="project-link">View on GitHub</span>
+                        </div>
+                    </a>
+
+                    <!-- Time Series -->
+                    <a class="project-card" href="#" target="_blank" rel="noreferrer">
+                        <div class="project-header">
+                            <div class="project-name">Retail Sales Forecasting</div>
+                            <div class="project-role">Time Series • Analytics</div>
+                        </div>
+                        <p class="project-desc">
+                            Time series forecasting and anomaly detection for retail sales:
+                            baselines, model comparison and business-oriented conclusions
+                            about seasonality and demand.
+                        </p>
+                        <div class="project-meta">
+                            <div class="tag-row">
+                                <span class="tag">Time Series</span>
+                                <span class="tag">Forecasting</span>
+                                <span class="tag">Python</span>
+                            </div>
+                            <span class="project-link">https://github.com/alnubvar/time_series_retail_forecasting</span>
+                        </div>
+                    </a>
+
+                    <!-- Recommender system -->
+                    <a class="project-card" href="https://github.com/alnubvar/recsys_retailrocket" target="_blank"
+                        rel="noreferrer">
+                        <div class="project-header">
+                            <div class="project-name">Recommender System • RetailRocket</div>
+                            <div class="project-role">Recsys • Ranking</div>
+                        </div>
+                        <p class="project-desc">
+                            Recommender system on RetailRocket data: baselines, collaborative
+                            filtering, ranking metrics (precision@k, recall@k) and business
+                            insights for product recommendations.
+                        </p>
+                        <div class="project-meta">
+                            <div class="tag-row">
+                                <span class="tag">Recsys</span>
+                                <span class="tag">Ranking</span>
+                                <span class="tag">Python</span>
+                            </div>
+                            <span class="project-link">View on GitHub</span>
+                        </div>
+                    </a>
+
+                    <!-- Churn Prediction -->
+                    <a class="project-card" href="#" target="_blank" rel="noreferrer">
+                        <div class="project-header">
+                            <div class="project-name">Telco Churn Prediction</div>
+                            <div class="project-role">ML • Tabular</div>
+                        </div>
+                        <p class="project-desc">
+                            End-to-end churn model for telecom: feature engineering, CatBoost,
+                            threshold tuning for business metrics and customer retention
+                            scenarios.
+                        </p>
+                        <div class="project-meta">
+                            <div class="tag-row">
+                                <span class="tag">CatBoost</span>
+                                <span class="tag">Churn</span>
+                                <span class="tag">Tabular ML</span>
+                            </div>
+                            <span class="project-link">https://github.com/alnubvar/ml_churn_telco</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Bots -->
+            <section id="bots">
+                <div class="section-header">
+                    <h2 class="section-title">Production Telegram Bots</h2>
+                    <span class="section-subtitle">Real bots used in chats & channels</span>
+                </div>
+
+                <div class="projects-grid">
+                    <!-- Moderator Bot -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-name">LA_Moderator_Bot</div>
+                            <div class="project-role">ML moderation • Automation</div>
+                        </div>
+                        <p class="project-desc">
+                            Autonomous moderation bot for Telegram chats. Detects ads using an
+                            ML model, deletes messages, tracks daily ad limits, supports
+                            whitelists and works 24/7 in production.
+                        </p>
+                        <div class="project-meta">
+                            <div class="tag-row">
+                                <span class="tag">Telegram Bot</span>
+                                <span class="tag">NLP</span>
+                                <span class="tag">Docker</span>
+                            </div>
+                            <span class="project-link">Private repo / by request</span>
+                        </div>
+                    </div>
+
+                    <!-- Autoposting / Broadcast Bot -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-name">Autoposting & Broadcast Bot</div>
+                            <div class="project-role">Content automation</div>
+                        </div>
+                        <p class="project-desc">
+                            Commercial Telegram tool for scheduled posts and autoposting across
+                            multiple chats. Focus on UX, reliability and simple management for
+                            non-technical users.
+                        </p>
+                        <div class="project-meta">
+                            <div class="tag-row">
+                                <span class="tag">Telegram Bot</span>
+                                <span class="tag">Scheduling</span>
+                                <span class="tag">Python</span>
+                            </div>
+                            <span class="project-link">Demo / details on request</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact -->
+            <section id="contact">
+                <div class="section-header">
+                    <h2 class="section-title">Contact & Links</h2>
+                    <span class="section-subtitle">Let's work on something useful</span>
+                </div>
+                <div class="card contact-card">
+                    <div class="contact-text">
+                        I’m looking for opportunities as a
+                        <strong>Junior ML Engineer / ML Engineer (NLP)</strong> and open to
+                        projects where ML and automation directly impact business metrics:
+                        revenue, retention or workload reduction.
+                        <br /><br />
+                        If you want to discuss a role, a Telegram bot, or an ML project —
+                        feel free to reach out.
+                    </div>
+                    <ul class="contact-list">
+                        <!-- TODO: replace with real contacts -->
+                        <li><strong>GitHub:</strong> <a href="https://github.com/alnubvar" target="_blank"
+                                rel="noreferrer"> github.com/alnubvar</a></li>
+                        <li><strong>Telegram:</strong> @alnubvar</li>
+                        <li><strong>Email:</strong> alnubwork@gmail.com</li>
+                        <li><strong>CV:</strong> https://disk.yandex.ru/i/Uf4KmcuKTSkIyA</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            © <span id="year"></span> Albert · ML Engineer & Telegram bot developer
+        </footer>
+    </div>
+
+    <script>
+        // set current year in footer
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>
